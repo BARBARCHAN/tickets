@@ -3,7 +3,7 @@ require 'csv'
 # 鉄道会社CSVファイルパス
 COMPANY_PATH = "db/data/companies.csv"
  
-# 鉄道会社カラム指定定数
+# 鉄道会社カラム指定定数 カラムは左から0,1,2
 COMPANY_CSVROW_COMPANY_ID = 0
 COMPANY_CSVROW_NAME = 2
 COMPANY_CSVROW_KANA = 3
@@ -11,12 +11,15 @@ COMPANY_CSVROW_FORMAL_NAME = 4
 COMPANY_CSVROW_ABBREVIATION_NAME = 5
  
 # 鉄道会社CSVを読み込みテーブルに保存
+# CSVファイルを読み込みブロック変数rowに代入
 CSV.foreach(COMPANY_PATH) do |row|
-    company_id = row[COMPANY_CSVROW_COMPANY_ID]
+    # CSVファイルから各カラムの要素を取り出し
+    company_id = row[COMPANY_CSVROW_COMPANY_ID] 
     name = row[COMPANY_CSVROW_NAME]
     kana = row[COMPANY_CSVROW_KANA]
     formal_name = row[COMPANY_CSVROW_FORMAL_NAME]
     abbreviation_name = row[COMPANY_CSVROW_ABBREVIATION_NAME]
+    # 各要素の初めの既存データを取得し、1件もなければ作成
     Company.find_or_create_by(
         :company_id => company_id,
         :name => name, :kana => kana,
