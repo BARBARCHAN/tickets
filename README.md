@@ -11,8 +11,10 @@
 ### Association
 - has_many :lines
 
+
 ## lines table
 |Column|Type|Options|
+|------|----|-------|
 |name|string||
 |kana|string||
 |company|references|foreign_key: true|
@@ -20,6 +22,7 @@
 ### Association
 - belongs_to :company
 - has_many :stations
+
 
 ## stations table
 
