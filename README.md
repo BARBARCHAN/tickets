@@ -1,24 +1,33 @@
-# README
+# Detabase_design
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## companies table
+|Column|Type|Options|
+|------|----|-------|
+|name|string||
+|kana|string||
+|formal_name||
+|abbreviation_name||
 
-Things you may want to cover:
+### Association
+- has_many :lines
 
-* Ruby version
+## lines table
+|Column|Type|Options|
+|name|string||
+|kana|string||
+|company|references|foreign_key: true|
 
-* System dependencies
+### Association
+- belongs_to :company
+- has_many :stations
 
-* Configuration
+## stations table
 
-* Database creation
+|Column|Type|Options|
+|------|----|-------|
+|name|string||
+|address|string||
+|line|references|foreign_key: true|
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :line
